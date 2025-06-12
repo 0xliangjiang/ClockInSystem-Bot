@@ -1,6 +1,6 @@
-# Playwright Automation Script
+# ClockInSystem-Bot
 
-这是一个使用 Playwright 自动化框架编写的 Python 脚本，用于自动化浏览器操作。
+这是一个使用 Playwright 自动化框架编写的 Python 脚本，用ClockInSystem-Bot签到打卡操作。
 
 ## 功能特点
 
