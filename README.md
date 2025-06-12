@@ -42,7 +42,8 @@ playwright install chromium
 python main.py
 ```
 
-如需确认提交，则需要将下方代码注释去掉
+如需确认提交，则需要将main.py里面的代码注释去掉
+
 ![1749700065864](https://github.com/user-attachments/assets/e83c0449-66ef-453e-96ed-567399671b09)
 
 
