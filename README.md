@@ -1,6 +1,6 @@
 # ClockInSystem-Bot
 
-这是一个使用 Playwright 自动化框架编写的 Python 脚本，用ClockInSystem-Bot签到打卡操作。
+这是一个使用 Playwright 自动化框架编写的 Python 脚本，用ybot对ClockInSystem进行签到打卡操作。
 
 ## 功能特点
 
