@@ -118,22 +118,11 @@ async def control_browser(browser_id, url, wallet_info, fee_rate=6, max_fee=8):
                 print(f"浏览器 {browser_id} 已输入私钥")
                 await asyncio.sleep(0.8)  # 短暂等待确保输入完成
 
-                # 清空并输入钱包地址
-                address_input = await page.query_selector('#singleReceiveAddress')
-                await address_input.click()
-                await page.keyboard.press('Control+A')
-                await page.keyboard.press('Delete')
-                await asyncio.sleep(0.2)  # 短暂等待确保清空完成
-                await address_input.fill(wallet_address)
-                print(f"浏览器 {browser_id} 已输入钱包地址: {wallet_address}")
-                await asyncio.sleep(0.5)  # 短暂等待确保输入完成
-                
-                
                 # 点击自定义按钮
                 await page.click('#custom')
                 print(f"浏览器 {browser_id} 已点击自定义按钮")
                 await asyncio.sleep(0.5)  # 短暂等待确保点击生效
-                
+
                 # 清空并输入 gas 费率
                 fee_input = await page.query_selector('#feeRate')
                 await fee_input.click()
@@ -143,7 +132,7 @@ async def control_browser(browser_id, url, wallet_info, fee_rate=6, max_fee=8):
                 await fee_input.fill(str(fee_rate))
                 print(f"浏览器 {browser_id} 已输入 gas 费率: {fee_rate}")
                 await asyncio.sleep(0.5)  # 短暂等待确保输入完成
-                
+
                 # 清空并输入最大 gas 费率
                 max_fee_input = await page.query_selector('#maxFee')
                 await max_fee_input.click()
@@ -153,6 +142,18 @@ async def control_browser(browser_id, url, wallet_info, fee_rate=6, max_fee=8):
                 await max_fee_input.fill(str(max_fee))
                 print(f"浏览器 {browser_id} 已输入最大 gas 费率: {max_fee}")
                 await asyncio.sleep(0.5)  # 短暂等待确保输入完成
+
+                # 清空并输入钱包地址
+                address_input = await page.query_selector('#singleReceiveAddress')
+                await address_input.click()
+                await page.keyboard.press('Control+A')
+                await page.keyboard.press('Delete')
+                await asyncio.sleep(0.8)  # 短暂等待确保清空完成
+                await address_input.fill(wallet_address)
+                print(f"浏览器 {browser_id} 已输入钱包地址: {wallet_address}")
+                await asyncio.sleep(0.8)  # 短暂等待确保输入完成
+                
+
 
                 # 等待开始铸造按钮可点击并点击
                 start_button = await page.wait_for_selector('#startMinting', timeout=10000)
@@ -165,6 +166,12 @@ async def control_browser(browser_id, url, wallet_info, fee_rate=6, max_fee=8):
                 # await asyncio.sleep(1)  # 等待一秒确保按钮可点击
                 # await confirm_button.click()
                 # print(f"浏览器 {browser_id} 已点击确认按钮")
+                
+                # 等待并点击弹窗中的确定按钮
+                # await asyncio.sleep(1)  # 等待弹窗出现
+                # modal_confirm = await page.wait_for_selector('button.btn.btn-primary[data-dismiss="modal"]', timeout=10000)
+                # await modal_confirm.click()
+                # print(f"浏览器 {browser_id} 已点击弹窗确定按钮")
                 
             except Exception as e:
                 print(f"浏览器 {browser_id} 输入信息或点击按钮时出错: {str(e)}")
@@ -188,7 +195,7 @@ async def main():
     close_event = asyncio.Event()
     
     # 设置目标区块高度
-    target_height = 900868
+    target_height = 901300
     
     # 等待达到目标区块高度
     await wait_for_block_height(target_height)
@@ -206,7 +213,7 @@ async def main():
     base_url = "https://alkanes.ybot.io/?runeid=2:21568"
     
     # 设置 gas 费率
-    fee_rate = 6  # 自定义的 gas 费率
+    fee_rate = 7.7  # 自定义的 gas 费率
     max_fee = 10  # 最大 gas 费率
     
     # 创建与钱包数量相同的浏览器任务
